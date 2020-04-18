@@ -11,7 +11,7 @@ namespace tea
         public int ID { get; }
         public Bid Subject { get; }
         public bool IsActive { get; set; }
-        private List<Bid> bids;
+        private readonly List<Bid> bids;
         public Bid Winner { get; set; }
 
         public Offer(int id, Bid subject)
@@ -47,6 +47,23 @@ namespace tea
             }
             else
                 throw new ArgumentException("Illegal bid!");
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Offer && ((Offer)obj).ID == this.ID;
+        }
+
+        public override int GetHashCode()
+        {
+            return (base.GetHashCode() * this.ID) % Int32.MaxValue;
+        }
+
+        public override string ToString()
+        {
+            return "Subject:\t" + this.Subject + Environment.NewLine
+                + "Active:\t" + (IsActive ? "yes" : "no")
+                + (IsActive ? "" : Environment.NewLine + "Winner:\t" + this.Winner);
         }
     }
 }
