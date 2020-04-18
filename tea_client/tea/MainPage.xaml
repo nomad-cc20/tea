@@ -8,7 +8,32 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <!--<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="40" Al/>
+        </Grid.RowDefinitions>
+        <Button Content="Offer" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0"/>
+        <Button Content="Browse" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Grid.Row="1"/>
 
-    </Grid>
+    </Grid>-->
+    <ListView x:Name="offers" HorizontalAlignment="Stretch">
+        <ListViewItem Content="Home" />
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+
+                    <TextBlock Text="{Binding Name}"></TextBlock>
+
+                    <TextBlock Text="{Binding Description}"></TextBlock>
+
+                    <TextBlock Text="{Binding User}"></TextBlock>
+
+                </Grid>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        <ListView.Footer>
+            <Button Content="New" HorizontalAlignment="Stretch" />
+        </ListView.Footer>
+    </ListView>
 </Page>

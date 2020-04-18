@@ -24,4 +24,6 @@ hs_err_pid*
 
 # VS
 /.vscode
+tea_client/tea/obj
+tea_client/tea/bin/*
 
