@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="tea.Offers"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:tea"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <FlipView x:Name="offersList" HorizontalAlignment="Stretch">
+            <FlipView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <StackPanel>
+                            <Image Width="500" Height="500" Source="Assets/LockScreenLogo.scale-200.png"/>
+                            <TextBlock Text="{Binding Subject.Caption}"></TextBlock>
+                            <TextBlock Text="{Binding Subject.Description}"></TextBlock>
+                            <TextBlock Text="{Binding Subject.User}"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </FlipView.ItemTemplate>
+            <Button Content="Must have it!" Click="Button_Click" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
+        </FlipView>
+    </Grid>
+</Page>

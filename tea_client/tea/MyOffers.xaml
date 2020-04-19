@@ -1,0 +1,38 @@
+﻿<Page
+    x:Class="tea.MyOffers"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:tea"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <ListView x:Name="offersList" HorizontalAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Button HorizontalAlignment="Stretch">
+                            <SplitView IsPaneOpen="True"
+           DisplayMode="Inline"
+           OpenPaneLength="296">
+                                <SplitView.Pane>
+                                    <Image Width="100" Height="100" Source="Assets/LockScreenLogo.scale-200.png"/>
+                                </SplitView.Pane>
+                                <!--<SplitView.Pane>-->
+                                <StackPanel  HorizontalAlignment="Stretch">
+                                        <TextBlock Text="{Binding Subject.Caption}"  HorizontalAlignment="Stretch"></TextBlock>
+                                        <TextBlock Text="{Binding Subject.Description}"></TextBlock>
+                                        <TextBlock Text="{Binding Subject.User}"></TextBlock>
+                                    </StackPanel>
+                                <!--</SplitView.Pane>-->
+                            </SplitView>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <Button Content="Gotta have it!" Click="Button_Click" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
+        </ListView>
+    </Grid>
+</Page>
