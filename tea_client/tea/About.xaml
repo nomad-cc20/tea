@@ -1,0 +1,18 @@
+﻿<Page
+    x:Class="tea.About"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:tea"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Toy Exchanging App" TextAlignment="Center" />
+            <TextBlock Text="An application for toy exchanging around the world. Cross the boundaries of playing with this amazing app!" TextAlignment="Center" TextWrapping="WrapWholeWords" />
+            <TextBlock Text="Ondřej Burda, Zdeněk Novotný © NejvícSoft 2020" TextAlignment="Center" TextWrapping="WrapWholeWords" />
+        </StackPanel>
+    </Grid>
+</Page>
