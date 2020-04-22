@@ -45,7 +45,7 @@ namespace tea
 
             ObservableCollection<Offer> dataList = new ObservableCollection<Offer>();
 
-            Offer anOffer = new Offer(0, new Bid(0, "aCaption", "aDescription", new User(0, "anUsername", "aPassword")));
+            Offer anOffer = new Offer(0, new Bid(0, "aCaption", "aDescription", new User(0, "aUsername", "aPassword")));
             Offer anotherOffer = new Offer(0, new Bid(0, "anotherCaption", "anotherDescription", new User(0, "anotherUsername", "anotherPassword")));
             Offer oneMoreOffer = new Offer(0, new Bid(0, "oneMoreCaption", "oneMoreDescription", new User(0, "oneMoreUsername", "oneMorePassword")));
 
@@ -54,6 +54,11 @@ namespace tea
             dataList.Add(oneMoreOffer);
 
             offersList.ItemsSource = dataList;
+        }
+
+        private void offersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

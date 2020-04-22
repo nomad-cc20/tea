@@ -9,6 +9,10 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="© NejvícSoft 2020" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Toy Exchanging App" TextAlignment="Center" />
+            <TextBlock Text="An application for toy exchanging around the world. Cross the boundaries of playing with this amazing app!" TextAlignment="Center" TextWrapping="WrapWholeWords" />
+            <TextBlock Text="Ondřej Burda, Zdeněk Novotný © NejvícSoft 2020" TextAlignment="Center" TextWrapping="WrapWholeWords" />
+        </StackPanel>
     </Grid>
 </Page>

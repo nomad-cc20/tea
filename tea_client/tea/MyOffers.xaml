@@ -9,30 +9,27 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <ListView x:Name="offersList" HorizontalAlignment="Stretch">
+            <ListView x:Name="offersList"
+                      Grid.Row="0"
+                      HorizontalAlignment="Stretch"
+                      SelectionChanged="offersList_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Button HorizontalAlignment="Stretch">
-                            <SplitView IsPaneOpen="True"
-           DisplayMode="Inline"
-           OpenPaneLength="296">
-                                <SplitView.Pane>
-                                    <Image Width="100" Height="100" Source="Assets/LockScreenLogo.scale-200.png"/>
-                                </SplitView.Pane>
-                                <!--<SplitView.Pane>-->
-                                <StackPanel  HorizontalAlignment="Stretch">
-                                        <TextBlock Text="{Binding Subject.Caption}"  HorizontalAlignment="Stretch"></TextBlock>
-                                        <TextBlock Text="{Binding Subject.Description}"></TextBlock>
-                                        <TextBlock Text="{Binding Subject.User}"></TextBlock>
-                                    </StackPanel>
-                                <!--</SplitView.Pane>-->
-                            </SplitView>
-                        </Button>
+                    <Grid HorizontalAlignment="Stretch" Height="100">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="Assets/logoTEAfinal.png"/>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="{Binding Subject.Caption}"></TextBlock>
+                            <TextBlock Text="{Binding Subject.Description}"
+                                       TextWrapping="WrapWholeWords"></TextBlock>
+                            <TextBlock Text="{Binding Subject.User}"></TextBlock>
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
-            <Button Content="Gotta have it!" Click="Button_Click" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
         </ListView>
     </Grid>
 </Page>

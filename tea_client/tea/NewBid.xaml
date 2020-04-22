@@ -9,6 +9,11 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <StackPanel>
+            <Image Width="200" Source="Assets/logoTEAfinal.png"/>
+            <TextBox x:Name="captionTb" PlaceholderText="Caption"/>
+            <TextBox x:Name="DescriptionTb" PlaceholderText="Description"/>
+            <Button x:Name="submitBtn" Content="Submit"/>
+        </StackPanel>
     </Grid>
 </Page>

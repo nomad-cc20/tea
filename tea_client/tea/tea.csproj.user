@@ -4,6 +4,6 @@
     <UseSimulator>false</UseSimulator>
   </PropertyGroup>
   <PropertyGroup>
-    <SplashScreenSource>S:\skola\N\INOSY2\tea\tea_client\tea\Assets\logo.png</SplashScreenSource>
+    <SplashScreenSource>S:\skola\N\INOSY2\tea\tea_client\tea\Assets\logoTEAfinal.png</SplashScreenSource>
   </PropertyGroup>
 </Project>

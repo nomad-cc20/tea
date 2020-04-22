@@ -9,20 +9,30 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <FlipView x:Name="offersList" HorizontalAlignment="Stretch">
+        <FlipView x:Name="offersList" HorizontalAlignment="Stretch" SelectionChanged="offersList_SelectionChanged">
             <FlipView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <StackPanel>
-                            <Image Width="500" Height="500" Source="Assets/LockScreenLogo.scale-200.png"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0"
+                               Source="Assets/logoTEAfinal.png" />
+                        <StackPanel Grid.Row="1"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Center">
                             <TextBlock Text="{Binding Subject.Caption}"></TextBlock>
                             <TextBlock Text="{Binding Subject.Description}"></TextBlock>
                             <TextBlock Text="{Binding Subject.User}"></TextBlock>
                         </StackPanel>
+                        <Button Grid.Row="2"
+                                Content="Get it!"
+                                HorizontalAlignment="Stretch" />
                     </Grid>
                 </DataTemplate>
             </FlipView.ItemTemplate>
-            <Button Content="Must have it!" Click="Button_Click" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
         </FlipView>
     </Grid>
 </Page>

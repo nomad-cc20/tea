@@ -9,7 +9,8 @@ namespace tea
     class Offer
     {
         public int ID { get; }
-        public Bid Subject { get; }
+        public List<Object> toys { get; }
+        public User user { get; }
         public bool IsActive { get; set; }
         private readonly List<Bid> bids;
         public Bid Winner { get; set; }

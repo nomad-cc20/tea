@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,9 +23,37 @@ namespace tea
     /// </summary>
     public sealed partial class MyBids : Page
     {
+        private int userID = -1;
+
         public MyBids()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            userID = (int)e.Parameter;
+
+            // TODO datalist of all user's offers from API
+
+            ObservableCollection<Offer> dataList = new ObservableCollection<Offer>();
+
+            Offer anOffer = new Offer(0, new Bid(0, "aCaption", "aDescription", new User(0, "aUsername", "aPassword")));
+            Offer anotherOffer = new Offer(0, new Bid(0, "anotherCaption", "anotherDescription", new User(0, "anotherUsername", "anotherPassword")));
+            Offer oneMoreOffer = new Offer(0, new Bid(0, "oneMoreCaption", "oneMoreDescription", new User(0, "oneMoreUsername", "oneMorePassword")));
+
+            dataList.Add(anOffer);
+            dataList.Add(anotherOffer);
+            dataList.Add(oneMoreOffer);
+
+            offersList.ItemsSource = dataList;
+        }
+
+        private void offersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -10,6 +10,8 @@ namespace tea
     {
         public int ID { get; }
         public string Caption { get; }
+        public List<Object> toys { get; }
+        public bool IsActive { get; set; }
         public string Description { get; }
         public User User { get; }
 
