@@ -8,26 +8,29 @@ namespace tea
 {
     class Offer
     {
-        public int ID { get; }
-        public List<Object> toys { get; }
-        public User user { get; }
+        public long ID { get; }
+        public List<Toy> Toys { get; }
+        public User User { get; }
         public bool IsActive { get; set; }
         private readonly List<Bid> bids;
         public Bid Winner { get; set; }
 
-        public Offer(int id, Bid subject)
+        public Offer(long id, User user)
         {
             this.ID = id;
-            this.Subject = subject ?? throw new ArgumentNullException(nameof(subject));
+            this.User = user;
             this.IsActive = true;
             this.Winner = null;
         }
 
-        public Offer(int iD, Bid subject, bool isActive, List<Bid> bids, Bid winner) : this(iD, subject)
+        public Offer(long iD, List<Toy> toys, User user, bool isActive, List<Bid> bids, Bid winner)
         {
-            this.IsActive = isActive;
+            ID = iD;
+            Toys = toys;
+            User = user;
+            IsActive = isActive;
             this.bids = bids;
-            this.Winner = winner;
+            Winner = winner;
         }
 
         public void Bid(Bid newBid)
@@ -57,13 +60,13 @@ namespace tea
 
         public override int GetHashCode()
         {
-            return (base.GetHashCode() * this.ID) % Int32.MaxValue;
+            return (int)(base.GetHashCode() * (this.ID % Int32.MaxValue)) % Int32.MaxValue;
         }
 
         public override string ToString()
         {
-            return "Subject:\t" + this.Subject + Environment.NewLine
-                + "Active:\t" + (IsActive ? "yes" : "no")
+            // TODO abandoned
+            return "Active:\t" + (IsActive ? "yes" : "no")
                 + (IsActive ? "" : Environment.NewLine + "Winner:\t" + this.Winner);
         }
     }

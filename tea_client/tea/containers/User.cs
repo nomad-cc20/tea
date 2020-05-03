@@ -8,14 +8,14 @@ namespace tea
 {
     class User
     {
-        public int ID { get; }
+        public long ID { get; }
         public string Username { get; }
         public string Password { get; }
 
-        private List<Offer> offers;
-        private List<Offer> biddedOffers;
+        private readonly List<Offer> offers;
+        private readonly List<Offer> biddedOffers;
 
-        public User(int id, string username, string password)
+        public User(long id, string username, string password)
         {
             this.ID = id;
             this.Username = username ?? throw new ArgumentNullException(nameof(username));
@@ -55,7 +55,7 @@ namespace tea
 
         public override int GetHashCode()
         {
-            return (base.GetHashCode() * this.ID) % Int32.MaxValue;
+            return (int)(base.GetHashCode() * (this.ID % Int32.MaxValue)) % Int32.MaxValue;
         }
 
         public override string ToString()
