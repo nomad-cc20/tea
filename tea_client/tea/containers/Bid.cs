@@ -10,7 +10,7 @@ namespace tea
     {
         public int ID { get; }
         public string Caption { get; }
-        public List<Object> toys { get; }
+        public List<Toy> Toys { get; }
         public bool IsActive { get; set; }
         public string Description { get; }
         public User User { get; }
@@ -23,6 +23,16 @@ namespace tea
             this.User = user ?? throw new ArgumentNullException(nameof(user));
         }
 
+        public Bid(int iD, string caption, List<Toy> toys, bool isActive, string description, User user)
+        {
+            this.ID = iD;
+            this.Caption = caption;
+            this.Toys = toys;
+            this.IsActive = isActive;
+            this.Description = description;
+            this.User = user;
+        }
+
         public override bool Equals(object obj)
         {
             return obj is Bid && ((Bid)obj).ID == this.ID;
@@ -30,7 +40,7 @@ namespace tea
 
         public override int GetHashCode()
         {
-            return (base.GetHashCode() * this.ID) % Int32.MaxValue;
+            return (int)(base.GetHashCode() * (this.ID % Int32.MaxValue)) % Int32.MaxValue;
         }
 
         public override string ToString()

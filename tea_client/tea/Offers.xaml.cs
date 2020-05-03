@@ -45,9 +45,9 @@ namespace tea
 
             ObservableCollection<Offer> dataList = new ObservableCollection<Offer>();
 
-            Offer anOffer = new Offer(0, new Bid(0, "aCaption", "aDescription", new User(0, "aUsername", "aPassword")));
-            Offer anotherOffer = new Offer(0, new Bid(0, "anotherCaption", "anotherDescription", new User(0, "anotherUsername", "anotherPassword")));
-            Offer oneMoreOffer = new Offer(0, new Bid(0, "oneMoreCaption", "oneMoreDescription", new User(0, "oneMoreUsername", "oneMorePassword")));
+            Offer anOffer = new Offer(0, new User(0, "aUsername", "aPassword"));
+            Offer anotherOffer = new Offer(1, new User(1, "anotherUsername", "anotherPassword"));
+            Offer oneMoreOffer = new Offer(2, new User(2, "oneMoreCaption", "oneMoreCaption"));
 
             dataList.Add(anOffer);
             dataList.Add(anotherOffer);
