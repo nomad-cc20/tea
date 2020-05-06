@@ -23,12 +23,12 @@
                         <StackPanel Grid.Row="1"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Center">
-                            <TextBlock Text="{Binding Subject.Caption}"></TextBlock>
-                            <TextBlock Text="{Binding Subject.Description}"></TextBlock>
-                            <TextBlock Text="{Binding Subject.User}"></TextBlock>
+                            <TextBlock Text="{Binding Caption}"></TextBlock>
+                            <TextBlock Text="{Binding Description}"></TextBlock>
+                            <TextBlock Text="{Binding NameOfPerson}"></TextBlock>
                         </StackPanel>
                         <Button Grid.Row="2"
-                                Content="Get it!"
+                                Content="Detail"
                                 HorizontalAlignment="Stretch" />
                     </Grid>
                 </DataTemplate>

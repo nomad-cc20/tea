@@ -20,14 +20,14 @@ namespace tea
     /// <summary>
     /// Prázdná stránka, která se dá použít samostatně nebo se na ni dá přejít v rámci
     /// </summary>
-    public sealed partial class Bids : Page
+    public sealed partial class OfferDetail : Page
     {
-        public Bids()
+        public OfferDetail()
         {
             this.InitializeComponent();
         }
 
-        private void offersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void toysList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

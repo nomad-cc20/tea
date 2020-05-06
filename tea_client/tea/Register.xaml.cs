@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -23,9 +22,9 @@ namespace tea
     /// <summary>
     /// Prázdná stránka, která se dá použít samostatně nebo se na ni dá přejít v rámci
     /// </summary>
-    public sealed partial class Login : Page
+    public sealed partial class Register : Page
     {
-        public Login()
+        public Register()
         {
             this.InitializeComponent();
         }
@@ -34,20 +33,16 @@ namespace tea
         {
             try
             {
-                if (nameTb.Text.Length == 0 || pwdTb.Text.Length == 0)
+                if (usernameTb.Text.Length == 0 || nameTb.Text.Length == 0
+                    || pwdTb.Text.Length == 0 || phoneTb.Text.Length == 0)
                 {
                     infoTb.Text = "The provided credentials are incomplete.";
                     pwdTb.Text = "";
                     return;
                 }
-                long userID = Query.logIn(new UserDtoOut(nameTb.Text, pwdTb.Text));
-                if (userID < 0)
-                {
-                    infoTb.Text = "The provided credentials are wrong.";
-                    pwdTb.Text = "";
-                    return;
-                }
-                this.Frame.Navigate(typeof(Main), userID);
+                Query.register(new RegisterDtoOut(usernameTb.Text,
+                    nameTb.Text, pwdTb.Text, phoneTb.Text));
+                this.Frame.Navigate(typeof(Login));
             }
             catch (Exception ex)
             {
@@ -58,7 +53,7 @@ namespace tea
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Register));
+            this.Frame.Navigate(typeof(Login));
         }
     }
 }

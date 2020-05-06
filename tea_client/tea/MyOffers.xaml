@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-            <ListView x:Name="offersList"
+        <ListView x:Name="offersList"
                       Grid.Row="0"
                       HorizontalAlignment="Stretch"
                       SelectionChanged="offersList_SelectionChanged">
@@ -18,7 +18,7 @@
                     <Grid HorizontalAlignment="Stretch" Height="100">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.3*"></ColumnDefinition>
-                            <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Image Grid.Column="0" Source="Assets/logoTEAfinal.png"/>
                         <StackPanel Grid.Column="1">

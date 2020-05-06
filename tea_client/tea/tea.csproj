@@ -126,6 +126,9 @@
       <DependentUpon>Bids.xaml</DependentUpon>
     </Compile>
     <Compile Include="containers\Bid.cs" />
+    <Compile Include="containers\dtos\OfferDtoIn.cs" />
+    <Compile Include="containers\dtos\RegisterDtoOut.cs" />
+    <Compile Include="containers\dtos\UserDtoOut.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -142,12 +145,19 @@
     <Compile Include="NewBid.xaml.cs">
       <DependentUpon>NewBid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OfferDetail.xaml.cs">
+      <DependentUpon>OfferDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Offers.xaml.cs">
       <DependentUpon>Offers.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="containers\User.cs" />
     <Compile Include="containers\Toy.cs" />
+    <Compile Include="Register.xaml.cs">
+      <DependentUpon>Register.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="util\Query.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -202,12 +212,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OfferDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Offers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Register.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client">
+      <Version>5.2.7</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.9</Version>
     </PackageReference>

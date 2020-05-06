@@ -9,11 +9,63 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <StackPanel>
-            <Image Width="200" Source="Assets/logoTEAfinal.png"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="32"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
             <TextBox x:Name="captionTb" PlaceholderText="Caption"/>
             <TextBox x:Name="DescriptionTb" PlaceholderText="Description"/>
-            <Button x:Name="submitBtn" Content="Submit"/>
         </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ListView x:Name="storedList"
+                      Grid.Column="0"
+                      SelectionChanged="storedList_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch" Height="100">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="Assets/logoTEAfinal.png"/>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{Binding Subject.Caption}"></TextBlock>
+                                <TextBlock Text="{Binding Subject.Description}"
+                                       TextWrapping="WrapWholeWords"></TextBlock>
+                                <TextBlock Text="{Binding Subject.User}"></TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView x:Name="offeredList"
+                      Grid.Column="1"
+                      SelectionChanged="offeredList_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch" Height="100">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="Assets/logoTEAfinal.png"/>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{Binding Subject.Caption}"></TextBlock>
+                                <TextBlock Text="{Binding Subject.Description}"
+                                       TextWrapping="WrapWholeWords"></TextBlock>
+                                <TextBlock Text="{Binding Subject.User}"></TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Button x:Name="submitBtn" Grid.Row="2" HorizontalAlignment="Stretch" Content="Submit"/>
     </Grid>
 </Page>

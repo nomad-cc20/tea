@@ -26,5 +26,15 @@ namespace tea
         {
             this.InitializeComponent();
         }
+
+        private void offeredList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void storedList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
