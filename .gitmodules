@@ -1,0 +1,3 @@
+[submodule "tea_server/semestralkaonosi"]
+	path = tea_server/semestralkaonosi
+	url = https://github.com/Burdis28/semestralkaonosi.git

@@ -28,5 +28,5 @@ tea_client/tea/obj
 tea_client/tea/bin/*
 
 # srv
-tea_server
-tea_server/*
+#tea_server
+#tea_server/*
