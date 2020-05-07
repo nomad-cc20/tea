@@ -9,7 +9,26 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="96"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="32"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                <ColumnDefinition Width="0.7*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="Assets/logoTEAfinal.png"/>
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="{Binding Subject.Caption}"></TextBlock>
+                <TextBlock Text="{Binding Subject.Description}"
+                                       TextWrapping="WrapWholeWords"></TextBlock>
+                <TextBlock Text="{Binding Subject.User}"></TextBlock>
+            </StackPanel>
+        </Grid>
         <ListView x:Name="bidsList"
+                      Grid.Row="1"
                       HorizontalAlignment="Stretch"
                       SelectionChanged="bidsList_SelectionChanged">
             <ListView.ItemTemplate>
@@ -17,7 +36,7 @@
                     <Grid HorizontalAlignment="Stretch" Height="100">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.3*"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="0.7*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Image Grid.Column="0" Source="Assets/logoTEAfinal.png"/>
                         <StackPanel Grid.Column="1">
@@ -30,5 +49,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button Grid.Row="2"
+                Name ="btnGet"
+                Content="Make a bid"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Bottom" Click="btnGet_Click" />
     </Grid>
 </Page>

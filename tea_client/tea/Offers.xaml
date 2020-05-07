@@ -29,7 +29,8 @@
                         </StackPanel>
                         <Button Grid.Row="2"
                                 Content="Detail"
-                                HorizontalAlignment="Stretch" />
+                                HorizontalAlignment="Stretch"
+                                Click="Button_Click" />
                     </Grid>
                 </DataTemplate>
             </FlipView.ItemTemplate>

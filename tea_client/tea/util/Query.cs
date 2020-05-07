@@ -166,5 +166,16 @@ namespace tea.utils
                 return Newtonsoft.Json.JsonConvert.DeserializeObject<List<OfferDtoIn>>((new StreamReader(response.GetResponseStream())).ReadToEnd());
             }
         }
+
+        public static List<BidDtoIn> GetBids(long id)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("getAllBidsOfUser/" + id));
+            request.Timeout = 5000;
+
+            using (var response = request.GetResponse())
+            {
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<List<BidDtoIn>>((new StreamReader(response.GetResponseStream())).ReadToEnd());
+            }
+        }
     }
 }

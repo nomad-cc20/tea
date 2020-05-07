@@ -54,7 +54,8 @@ namespace tea
 
         private void offersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            OfferDtoIn dto = ((OfferDtoIn)offersList.SelectedItem);
+            this.Frame.Navigate(typeof(Bids), new object[] { username, dto });
         }
     }
 }
