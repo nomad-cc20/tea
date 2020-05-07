@@ -23,11 +23,11 @@ namespace tea
     /// <summary>
     /// Prázdná stránka, která se dá použít samostatně nebo se na ni dá přejít v rámci
     /// </summary>
-    public sealed partial class MyBids : Page
+    public sealed partial class MyToys : Page
     {
         private string username = "";
 
-        public MyBids()
+        public MyToys()
         {
             this.InitializeComponent();
         }
@@ -40,23 +40,18 @@ namespace tea
 
             // TODO datalist of all user's offers from API
 
-            ObservableCollection<OfferDtoIn> dataList = new ObservableCollection<OfferDtoIn>();
+            ObservableCollection<ToyDtoIn> dataList = new ObservableCollection<ToyDtoIn>();
 
             try
             {
-                Query.GetMyBids(new UserNameDtoOut { username = this.username }).ForEach((OfferDtoIn o) => { dataList.Add(o); });
+                Query.GetMyToys(new UserNameDtoOut { username = this.username }).ForEach((ToyDtoIn o) => { dataList.Add(o); });
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
 
-            offersList.ItemsSource = dataList;
-        }
-
-        private void offersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            toysList.ItemsSource = dataList;
         }
     }
 }

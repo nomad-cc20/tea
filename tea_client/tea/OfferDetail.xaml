@@ -10,9 +10,9 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="96"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="32"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -51,8 +51,8 @@
         </ListView>
         <Button Grid.Row="2"
                 Name ="btnGet"
-                Content="Detail"
+                Content="Make a bid"
                 HorizontalAlignment="Stretch"
-                VerticalAlignment="Bottom" />
+                VerticalAlignment="Bottom" Click="btnGet_Click" />
     </Grid>
 </Page>

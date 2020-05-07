@@ -25,7 +25,7 @@ namespace tea
     /// </summary>
     public sealed partial class Offers : Page
     {
-        private int userID = -1;
+        private string username = "";
 
         public Offers()
         {
@@ -34,14 +34,15 @@ namespace tea
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // TODO new bid
+            OfferDtoIn dto = ((OfferDtoIn)offersList.SelectedItem);
+            this.Frame.Navigate(typeof(OfferDetail), new object[] { username, dto });
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            userID = (int)e.Parameter;
+            username = (string)e.Parameter;
 
             ObservableCollection<OfferDtoIn> dataList = new ObservableCollection<OfferDtoIn>();
 
@@ -59,7 +60,7 @@ namespace tea
 
         private void offersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            
         }
     }
 }

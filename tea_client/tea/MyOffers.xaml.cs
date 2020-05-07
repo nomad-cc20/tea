@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using tea.containers.dtos;
+using tea.utils;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -23,7 +25,7 @@ namespace tea
     /// </summary>
     public sealed partial class MyOffers : Page
     {
-        private int userID = -1;
+        private string username = "";
 
         public MyOffers()
         {
@@ -34,19 +36,18 @@ namespace tea
         {
             base.OnNavigatedTo(e);
 
-            userID = (int)e.Parameter;
+            username = (string)e.Parameter;
 
-            // TODO datalist of all user's offers from API
+            ObservableCollection<OfferDtoIn> dataList = new ObservableCollection<OfferDtoIn>();
 
-            ObservableCollection<Offer> dataList = new ObservableCollection<Offer>();
-
-            Offer anOffer = new Offer(0, new User(0, "aUsername", "aPassword"));
-            Offer anotherOffer = new Offer(1, new User(1, "anotherUsername", "anotherPassword"));
-            Offer oneMoreOffer = new Offer(2, new User(2, "oneMoreCaption", "oneMoreCaption"));
-
-            dataList.Add(anOffer);
-            dataList.Add(anotherOffer);
-            dataList.Add(oneMoreOffer);
+            try
+            {
+                Query.GetMyOffers(new UserNameDtoOut { username = this.username }).ForEach((OfferDtoIn o) => { dataList.Add(o); });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             offersList.ItemsSource = dataList;
         }

@@ -24,7 +24,7 @@ namespace tea
     /// </summary>
     public sealed partial class Main : Page
     {
-        private int userID = -1;
+        private string userID = "";
         private NavigationViewItem _lastItem;
 
         public Main()
@@ -36,7 +36,7 @@ namespace tea
         {
             base.OnNavigatedTo(e);
 
-            userID = (int)e.Parameter;
+            userID = (string)e.Parameter;
         }
 
         private void NavView_OnItemInvoked(
@@ -46,7 +46,7 @@ namespace tea
             var item = args.InvokedItemContainer as NavigationViewItem;
             if (item == null || item == _lastItem)
                 return;
-            var clickedView = item.Tag?.ToString() ?? "SettingsView";
+            var clickedView = item.Tag?.ToString() ?? "Settings";
             if (!NavigateToView(clickedView)) return;
             _lastItem = item;
         }

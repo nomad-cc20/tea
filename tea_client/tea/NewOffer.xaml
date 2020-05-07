@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="tea.NewBid"
+    x:Class="tea.NewOffer"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:tea"
@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
             <TextBox x:Name="captionTb" PlaceholderText="Caption"/>
-            <TextBox x:Name="DescriptionTb" PlaceholderText="Description"/>
+            <TextBox x:Name="descriptionTb" PlaceholderText="Description"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.5*"></ColumnDefinition>
@@ -34,8 +34,7 @@
                 <ColumnDefinition Width="0.5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <ListView x:Name="storedList"
-                      Grid.Column="0"
-                      SelectionChanged="storedList_SelectionChanged">
+                      Grid.Column="0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid HorizontalAlignment="Stretch" Height="100">
@@ -43,20 +42,20 @@
                                 <ColumnDefinition Width="0.3*"></ColumnDefinition>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="Assets/logoTEAfinal.png"/>
-                            <StackPanel Grid.Column="1">
-                                <TextBlock Text="{Binding Subject.Caption}"></TextBlock>
-                                <TextBlock Text="{Binding Subject.Description}"
-                                       TextWrapping="WrapWholeWords"></TextBlock>
-                                <TextBlock Text="{Binding Subject.User}"></TextBlock>
-                            </StackPanel>
+                            <Grid HorizontalAlignment="Stretch" Height="100">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="Assets/logoTEAfinal.png"/>
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                            </Grid>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
             <ListView x:Name="offeredList"
-                      Grid.Column="1"
-                      SelectionChanged="offeredList_SelectionChanged">
+                      Grid.Column="1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid HorizontalAlignment="Stretch" Height="100">
@@ -65,17 +64,12 @@
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Image Grid.Column="0" Source="Assets/logoTEAfinal.png"/>
-                            <StackPanel Grid.Column="1">
-                                <TextBlock Text="{Binding Subject.Caption}"></TextBlock>
-                                <TextBlock Text="{Binding Subject.Description}"
-                                       TextWrapping="WrapWholeWords"></TextBlock>
-                                <TextBlock Text="{Binding Subject.User}"></TextBlock>
-                            </StackPanel>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <Button x:Name="submitBtn" Grid.Row="2" HorizontalAlignment="Stretch" Content="Submit"/>
+        <Button x:Name="submitBtn" Grid.Row="2" HorizontalAlignment="Stretch" Content="Submit&#xD;&#xA;" Click="submitBtn_Click"/>
     </Grid>
 </Page>

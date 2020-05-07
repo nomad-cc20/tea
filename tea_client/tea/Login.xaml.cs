@@ -40,19 +40,20 @@ namespace tea
                     pwdTb.Text = "";
                     return;
                 }
-                long userID = Query.logIn(new UserDtoOut(nameTb.Text, pwdTb.Text));
-                if (userID < 0)
+                string username = Query.LogIn(new UserDtoOut(nameTb.Text, pwdTb.Text));
+                if (username.Equals("-1"))
                 {
                     infoTb.Text = "The provided credentials are wrong.";
                     pwdTb.Text = "";
                     return;
                 }
-                this.Frame.Navigate(typeof(Main), userID);
+                this.Frame.Navigate(typeof(Main), username);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 infoTb.Text = "Could not connect to the server. Please try again later.";
+                pwdTb.Text = "";
             }
         }
 

@@ -24,7 +24,7 @@
                 </NavigationViewItem>
                 <NavigationViewItemSeparator/>
                 <NavigationViewItem Content="New offer"
-                                    Tag="NewBid">
+                                    Tag="NewOffer">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE7C3;"
                                   FontFamily="Segoe MDL2 Assets" />
@@ -41,6 +41,21 @@
                                     Tag="MyBids">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xEB51;"
+                                  FontFamily="Segoe MDL2 Assets" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItemSeparator/>
+                <NavigationViewItem Content="New toy"
+                                    Tag="NewToy">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE78B;"
+                                  FontFamily="Segoe MDL2 Assets" />
+                        </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="My toys"
+                                    Tag="MyToys">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE7BF;"
                                   FontFamily="Segoe MDL2 Assets" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>

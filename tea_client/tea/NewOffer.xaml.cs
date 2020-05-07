@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -8,6 +7,7 @@ using tea.containers.dtos;
 using tea.utils;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -23,11 +23,11 @@ namespace tea
     /// <summary>
     /// Prázdná stránka, která se dá použít samostatně nebo se na ni dá přejít v rámci
     /// </summary>
-    public sealed partial class MyBids : Page
+    public sealed partial class NewOffer : Page
     {
         private string username = "";
 
-        public MyBids()
+        public NewOffer()
         {
             this.InitializeComponent();
         }
@@ -37,26 +37,36 @@ namespace tea
             base.OnNavigatedTo(e);
 
             username = (string)e.Parameter;
+        }
 
-            // TODO datalist of all user's offers from API
+        private void submitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (captionTb.Text.Length <= 0)
+            {
+                captionTb.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+                return;
+            }
 
-            ObservableCollection<OfferDtoIn> dataList = new ObservableCollection<OfferDtoIn>();
+            if (descriptionTb.Text.Length <= 0)
+            {
+                descriptionTb.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+                return;
+            }
 
             try
             {
-                Query.GetMyBids(new UserNameDtoOut { username = this.username }).ForEach((OfferDtoIn o) => { dataList.Add(o); });
+                Query.NewOffer(new NewOfferDtoOut {
+                    caption = captionTb.Text,
+                    description = descriptionTb.Text,
+                    toys = new List<Toy>(),
+                    username = this.username
+                });
+                this.Frame.Navigate(typeof(MyOffers), username);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-
-            offersList.ItemsSource = dataList;
-        }
-
-        private void offersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

@@ -40,14 +40,22 @@ namespace tea
                     pwdTb.Text = "";
                     return;
                 }
-                Query.register(new RegisterDtoOut(usernameTb.Text,
-                    nameTb.Text, pwdTb.Text, phoneTb.Text));
+
+                string username = Query.Register(new RegisterDtoOut(usernameTb.Text,
+                    pwdTb.Text, nameTb.Text, phoneTb.Text));
+                if (username.Equals("-1"))
+                {
+                    infoTb.Text = "Invalid value found. Please double check your credentials.";
+                    pwdTb.Text = "";
+                    return;
+                }
                 this.Frame.Navigate(typeof(Login));
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 infoTb.Text = "Could not connect to the server. Please try again later.";
+                pwdTb.Text = "";
             }
         }
 

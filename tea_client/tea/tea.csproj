@@ -126,9 +126,13 @@
       <DependentUpon>Bids.xaml</DependentUpon>
     </Compile>
     <Compile Include="containers\Bid.cs" />
+    <Compile Include="containers\dtos\NewOfferDtoOut.cs" />
+    <Compile Include="containers\dtos\NewToyDtoOut.cs" />
     <Compile Include="containers\dtos\OfferDtoIn.cs" />
     <Compile Include="containers\dtos\RegisterDtoOut.cs" />
+    <Compile Include="containers\dtos\ToyDtoIn.cs" />
     <Compile Include="containers\dtos\UserDtoOut.cs" />
+    <Compile Include="containers\dtos\UserNameDtoOut.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -142,8 +146,17 @@
     <Compile Include="MyOffers.xaml.cs">
       <DependentUpon>MyOffers.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyToys.xaml.cs">
+      <DependentUpon>MyToys.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewBid.xaml.cs">
       <DependentUpon>NewBid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewOffer.xaml.cs">
+      <DependentUpon>NewOffer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewToy.xaml.cs">
+      <DependentUpon>NewToy.xaml</DependentUpon>
     </Compile>
     <Compile Include="OfferDetail.xaml.cs">
       <DependentUpon>OfferDetail.xaml</DependentUpon>
@@ -156,6 +169,9 @@
     <Compile Include="containers\Toy.cs" />
     <Compile Include="Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="util\Query.cs" />
   </ItemGroup>
@@ -208,7 +224,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MyToys.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewBid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewOffer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewToy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,6 +249,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Register.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
