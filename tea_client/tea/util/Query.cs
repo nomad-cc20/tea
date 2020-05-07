@@ -84,7 +84,7 @@ namespace tea.utils
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("getAllToys"));
             request.Timeout = 5000;
-            request.Method = "GET";
+            request.Method = "POST";
             request.ContentType = "application/json; charset=utf-8";
 
             using (var streamWriter = new StreamWriter(request.GetRequestStream()))
@@ -131,7 +131,16 @@ namespace tea.utils
         public static List<OfferDtoIn> GetMyOffers(UserNameDtoOut dto)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("getAllOffersOfUser"));
+            request.Method = "POST";
+            request.ContentType = "application/json; charset=utf-8";
             request.Timeout = 5000;
+
+            using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+            {
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(dto);
+                streamWriter.Write(json);
+                streamWriter.Close();
+            }
 
             using (var response = request.GetResponse())
             {
@@ -141,7 +150,7 @@ namespace tea.utils
 
         public static void NewBid(NewBidDtoOut dto)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("createOffer"));
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("createBid"));
             request.Timeout = 5000;
             request.Method = "POST";
             request.ContentType = "application/json; charset=utf-8";
@@ -159,7 +168,16 @@ namespace tea.utils
         public static List<OfferDtoIn> GetMyBids(UserNameDtoOut dto)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("getAllBidsOfUser"));
+            request.Method = "POST";
+            request.ContentType = "application/json; charset=utf-8";
             request.Timeout = 5000;
+
+            using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+            {
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(dto);
+                streamWriter.Write(json);
+                streamWriter.Close();
+            }
 
             using (var response = request.GetResponse())
             {
@@ -169,13 +187,22 @@ namespace tea.utils
 
         public static List<BidDtoIn> GetBids(long id)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("getAllBidsOfUser/" + id));
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("getAllBids/" + id));
             request.Timeout = 5000;
 
             using (var response = request.GetResponse())
             {
                 return Newtonsoft.Json.JsonConvert.DeserializeObject<List<BidDtoIn>>((new StreamReader(response.GetResponseStream())).ReadToEnd());
             }
+        }
+
+        public static void AcceptBid(long id)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("acceptBid/" + id));
+            request.Method = "POST";
+            request.Timeout = 5000;
+
+            request.GetResponse();
         }
     }
 }

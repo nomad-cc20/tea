@@ -37,7 +37,7 @@
                                   FontFamily="Segoe MDL2 Assets" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Bidded offers"
+                <NavigationViewItem Content="My bids"
                                     Tag="MyBids">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xEB51;"

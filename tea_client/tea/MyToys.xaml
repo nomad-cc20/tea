@@ -11,7 +11,8 @@
     <Grid>
         <ListView x:Name="toysList"
                       Grid.Row="0"
-                      HorizontalAlignment="Stretch">
+                      HorizontalAlignment="Stretch"
+                  SelectionChanged="toysList_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Stretch" Height="100">

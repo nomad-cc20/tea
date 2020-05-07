@@ -21,10 +21,10 @@
             </Grid.ColumnDefinitions>
             <Image Grid.Column="0" Source="Assets/logoTEAfinal.png"/>
             <StackPanel Grid.Column="1">
-                <TextBlock Text="{Binding Subject.Caption}"></TextBlock>
-                <TextBlock Text="{Binding Subject.Description}"
-                                       TextWrapping="WrapWholeWords"></TextBlock>
-                <TextBlock Text="{Binding Subject.User}"></TextBlock>
+                <TextBlock x:Name="CaptionTb"></TextBlock>
+                <TextBlock x:Name="DescriptionTb"
+                           TextWrapping="WrapWholeWords"></TextBlock>
+                <TextBlock x:Name="UserTb"></TextBlock>
             </StackPanel>
         </Grid>
         <ListView x:Name="toysList"

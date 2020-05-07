@@ -20,16 +20,11 @@ namespace tea
     /// <summary>
     /// Prázdná stránka, která se dá použít samostatně nebo se na ni dá přejít v rámci
     /// </summary>
-    public sealed partial class Settings : Page
+    public sealed partial class Blank : Page
     {
-        public Settings()
+        public Blank()
         {
             this.InitializeComponent();
-        }
-
-        private void btnLogOut_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(Login));
         }
     }
 }

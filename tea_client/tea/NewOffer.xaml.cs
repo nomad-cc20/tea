@@ -61,7 +61,7 @@ namespace tea
                     toys = new List<Toy>(),
                     username = this.username
                 });
-                this.Frame.Navigate(typeof(MyOffers), username);
+                this.Frame.Navigate(typeof(Blank));
             }
             catch (Exception ex)
             {

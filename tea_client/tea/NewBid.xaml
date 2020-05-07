@@ -76,6 +76,6 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <Button x:Name="submitBtn" Grid.Row="2" HorizontalAlignment="Stretch" Content="Submit"/>
+        <Button x:Name="submitBtn" Grid.Row="2" HorizontalAlignment="Stretch" Content="Submit" Click="submitBtn_Click"/>
     </Grid>
 </Page>

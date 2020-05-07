@@ -98,7 +98,7 @@ namespace tea
                     toys = offer.Toys,
                     username = username
                 });
-                this.Frame.Navigate(typeof(MyBids), username);
+                this.Frame.Navigate(typeof(Blank));
             }
             catch (Exception ex)
             {

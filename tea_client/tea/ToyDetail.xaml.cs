@@ -20,16 +20,23 @@ namespace tea
     /// <summary>
     /// Prázdná stránka, která se dá použít samostatně nebo se na ni dá přejít v rámci
     /// </summary>
-    public sealed partial class Settings : Page
+    public sealed partial class ToyDetail : Page
     {
-        public Settings()
+        private Toy toy = null;
+
+        public ToyDetail()
         {
             this.InitializeComponent();
         }
 
-        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.Frame.Navigate(typeof(Login));
+            base.OnNavigatedTo(e);
+
+            toy = (Toy)e.Parameter;
+
+            nameTb.Text = toy.Name;
+            // TODO image
         }
     }
 }

@@ -23,12 +23,12 @@ namespace tea
     /// <summary>
     /// Prázdná stránka, která se dá použít samostatně nebo se na ni dá přejít v rámci
     /// </summary>
-    public sealed partial class Bids : Page
+    public sealed partial class BidDetail : Page
     {
         private string username = "";
-        private OfferDtoIn offer = null;
+        private BidDtoIn bid = null;
 
-        public Bids()
+        public BidDetail()
         {
             this.InitializeComponent();
         }
@@ -38,29 +38,23 @@ namespace tea
             base.OnNavigatedTo(e);
 
             username = (string)(((object[])(e.Parameter))[0]);
-            offer = (OfferDtoIn)(((object[])(e.Parameter))[1]);
+            bid = (BidDtoIn)(((object[])(e.Parameter))[1]);
 
-            ObservableCollection<BidDtoIn> dataList = new ObservableCollection<BidDtoIn>();
+            ObservableCollection<Toy> dataList = new ObservableCollection<Toy>(bid.toys);
 
-            try
-            {
-                Query.GetBids(offer.OfferId).ForEach((BidDtoIn o) => { dataList.Add(o); });
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-            captionTb.Text = offer.Caption;
-            descriptionTb.Text = offer.Description;
-            userTb.Text = offer.NameOfPerson;
-            bidsList.ItemsSource = dataList;
+            toysList.ItemsSource = dataList;
         }
 
-        private void bidsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void toysList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            BidDtoIn dto = ((BidDtoIn)bidsList.SelectedItem);
-            this.Frame.Navigate(typeof(BidDetail), new object[] { username, dto });
+            Toy toy = ((Toy)toysList.SelectedItem);
+            this.Frame.Navigate(typeof(ToyDetail), toy);
+        }
+
+        private void BtnAccept_Click(object sender, RoutedEventArgs e) 
+        {
+            Query.AcceptBid(bid.id);
+            this.Frame.Navigate(typeof(MyOffers), username);
         }
     }
 }

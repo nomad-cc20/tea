@@ -8,6 +8,7 @@ namespace tea.containers.dtos
 {
     class BidDtoIn
     {
+        public long id { get; set; }
         public long offerId { get; set; }
         public string nameOfPerson { get; set; }
         public string caption { get; set; }

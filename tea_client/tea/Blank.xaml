@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="tea.Settings"
+    x:Class="tea.Blank"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:tea"
@@ -9,10 +9,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Button Name ="btnLogOut"
-                Content="Log out"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Click="btnLogOut_Click" />
+        <TextBlock Text="Done."
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
     </Grid>
 </Page>

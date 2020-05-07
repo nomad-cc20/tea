@@ -44,7 +44,7 @@ namespace tea
             NavigationViewItemInvokedEventArgs args)
         {
             var item = args.InvokedItemContainer as NavigationViewItem;
-            if (item == null || item == _lastItem)
+            if (item == null)// || item == _lastItem)
                 return;
             var clickedView = item.Tag?.ToString() ?? "Settings";
             if (!NavigateToView(clickedView)) return;

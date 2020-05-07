@@ -53,5 +53,11 @@ namespace tea
 
             toysList.ItemsSource = dataList;
         }
+
+        private void toysList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Toy toy = ((Toy)toysList.SelectedItem);
+            this.Frame.Navigate(typeof(ToyDetail), toy);
+        }
     }
 }

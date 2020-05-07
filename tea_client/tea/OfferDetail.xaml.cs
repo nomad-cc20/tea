@@ -42,6 +42,9 @@ namespace tea
 
             ObservableCollection<Toy> dataList = new ObservableCollection<Toy>(offer.Toys);
 
+            CaptionTb.Text = offer.Caption;
+            DescriptionTb.Text = offer.Description;
+            UserTb.Text = offer.NameOfPerson;
             toysList.ItemsSource = dataList;
         }
 

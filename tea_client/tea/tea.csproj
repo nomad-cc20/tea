@@ -122,10 +122,18 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BidDetail.xaml.cs">
+      <DependentUpon>BidDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Bids.xaml.cs">
       <DependentUpon>Bids.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Blank.xaml.cs">
+      <DependentUpon>Blank.xaml</DependentUpon>
+    </Compile>
     <Compile Include="containers\Bid.cs" />
+    <Compile Include="containers\dtos\BidDtoIn.cs" />
+    <Compile Include="containers\dtos\NewBidDtoOut.cs" />
     <Compile Include="containers\dtos\NewOfferDtoOut.cs" />
     <Compile Include="containers\dtos\NewToyDtoOut.cs" />
     <Compile Include="containers\dtos\OfferDtoIn.cs" />
@@ -173,6 +181,9 @@
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ToyDetail.xaml.cs">
+      <DependentUpon>ToyDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="util\Query.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -204,7 +215,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="BidDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Bids.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Blank.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -253,6 +272,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToyDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

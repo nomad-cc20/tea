@@ -25,7 +25,7 @@
                             <TextBlock Text="{Binding Caption}"></TextBlock>
                             <TextBlock Text="{Binding Description}"
                                        TextWrapping="WrapWholeWords"></TextBlock>
-                            <TextBlock Text="{Binding User}"></TextBlock>
+                            <TextBlock Text="{Binding NameOfPerson}"></TextBlock>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

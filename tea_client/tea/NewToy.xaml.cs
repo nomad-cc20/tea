@@ -46,7 +46,7 @@ namespace tea
                 try
                 {
                     Query.NewToy(new NewToyDtoOut(nameTb.Text, username));
-                    this.Frame.Navigate(typeof(MyToys), username);
+                    this.Frame.Navigate(typeof(Blank));
                 }
                 catch (Exception ex)
                 {
