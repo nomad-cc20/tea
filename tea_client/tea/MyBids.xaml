@@ -10,9 +10,10 @@
 
     <Grid>
         <ListView x:Name="offersList"
-                      Grid.Row="0"
-                      HorizontalAlignment="Stretch"
-                      SelectionChanged="offersList_SelectionChanged">
+                  Grid.Row="0"
+                  HorizontalAlignment="Stretch"
+                  SelectionChanged="offersList_SelectionChanged"
+                  ContainerContentChanging="offersList_ContainerContentChanging">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Stretch" Height="100">

@@ -8,6 +8,7 @@ using tea.containers.dtos;
 using tea.utils;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -40,8 +41,11 @@ namespace tea
             username = (string)(((object[])(e.Parameter))[0]);
             bid = (BidDtoIn)(((object[])(e.Parameter))[1]);
 
-            ObservableCollection<Toy> dataList = new ObservableCollection<Toy>(bid.toys);
+            ObservableCollection<Toy> dataList = new ObservableCollection<Toy>(bid.Toys);
 
+            CaptionTb.Text = bid.Caption;
+            DescriptionTb.Text = bid.Description;
+            UserTb.Text = bid.NameOfPerson;
             toysList.ItemsSource = dataList;
         }
 
@@ -53,8 +57,8 @@ namespace tea
 
         private void BtnAccept_Click(object sender, RoutedEventArgs e) 
         {
-            Query.AcceptBid(bid.id);
-            this.Frame.Navigate(typeof(MyOffers), username);
+            string number = Query.AcceptBid(bid.Id);
+            this.Frame.Navigate(typeof(Accepted), number);
         }
     }
 }

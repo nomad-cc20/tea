@@ -39,10 +39,10 @@
                         </Grid.ColumnDefinitions>
                         <Image Grid.Column="0" Source="Assets/logoTEAfinal.png"/>
                         <StackPanel Grid.Column="1">
-                            <TextBlock Text="{Binding caption}"></TextBlock>
-                            <TextBlock Text="{Binding description}"
+                            <TextBlock Text="{Binding Caption}"></TextBlock>
+                            <TextBlock Text="{Binding Description}"
                                        TextWrapping="WrapWholeWords"></TextBlock>
-                            <TextBlock Text="{Binding nameOfPerson}"></TextBlock>
+                            <TextBlock Text="{Binding NameOfPerson}"></TextBlock>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

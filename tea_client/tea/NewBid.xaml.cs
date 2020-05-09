@@ -42,60 +42,45 @@ namespace tea
             offer = (OfferDtoIn)(((object[])(e.Parameter))[1]);
 
             ObservableCollection<ToyDtoIn> availableToysList = new ObservableCollection<ToyDtoIn>();
-            ObservableCollection<ToyDtoIn> offeredToysList = new ObservableCollection<ToyDtoIn>();
 
             try
             {
                 availableToysList = new ObservableCollection<ToyDtoIn>(Query.GetMyToys(new UserNameDtoOut { username = this.username }));
-                offeredToysList = new ObservableCollection<ToyDtoIn>();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
 
-            storedList.ItemsSource = availableToysList;
-            offeredList.ItemsSource = offeredToysList;
-        }
-
-        private void storedList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ToyDtoIn toy = (ToyDtoIn)storedList.SelectedItem;
-
-            ((ObservableCollection<ToyDtoIn>)storedList.ItemsSource).Remove(toy);
-            ((ObservableCollection<ToyDtoIn>)offeredList.ItemsSource).Add(toy);
-        }
-
-        private void offeredList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ToyDtoIn toy = (ToyDtoIn)offeredList.SelectedItem;
-
-            ((ObservableCollection<ToyDtoIn>)offeredList.ItemsSource).Remove(toy);
-            ((ObservableCollection<ToyDtoIn>)storedList.ItemsSource).Add(toy);
+            toysList.ItemsSource = availableToysList;
         }
 
         private void submitBtn_Click(object sender, RoutedEventArgs e)
         {
             if (captionTb.Text.Length <= 0)
             {
-                captionTb.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+                captionTb.PlaceholderForeground = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
                 return;
             }
 
-            if (DescriptionTb.Text.Length <= 0)
+            if (descriptionTb.Text.Length <= 0)
             {
-                DescriptionTb.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+                descriptionTb.PlaceholderForeground = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
                 return;
             }
+
+            List<long> toys = new List<long>();
+            List<ToyDtoIn> toyDtos = toysList.SelectedItems.OfType<ToyDtoIn>().ToList();
+            toyDtos.ForEach((ToyDtoIn toy) => { toys.Add(toy.Id); });
 
             try
             {
                 Query.NewBid(new NewBidDtoOut()
                 {
                     caption = captionTb.Text,
-                    description = DescriptionTb.Text,
+                    description = descriptionTb.Text,
                     offerId = offer.OfferId,
-                    toys = offer.Toys,
+                    toys = toys,
                     username = username
                 });
                 this.Frame.Navigate(typeof(Blank));

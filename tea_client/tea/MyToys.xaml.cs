@@ -38,13 +38,11 @@ namespace tea
 
             username = (string)e.Parameter;
 
-            // TODO datalist of all user's offers from API
-
-            ObservableCollection<ToyDtoIn> dataList = new ObservableCollection<ToyDtoIn>();
+            ObservableCollection<Toy> dataList = new ObservableCollection<Toy>();
 
             try
             {
-                Query.GetMyToys(new UserNameDtoOut { username = this.username }).ForEach((ToyDtoIn o) => { dataList.Add(o); });
+                Query.GetMyToys(new UserNameDtoOut { username = this.username }).ForEach((ToyDtoIn o) => { dataList.Add(new Toy(o)); });
             }
             catch (Exception ex)
             {

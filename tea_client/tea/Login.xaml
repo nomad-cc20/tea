@@ -12,7 +12,7 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock x:Name="infoTb" TextWrapping="WrapWholeWords" HorizontalAlignment="Center" />
             <TextBox x:Name="nameTb" PlaceholderText="Username" />
-            <TextBox x:Name="pwdTb" PlaceholderText="Password" />
+            <PasswordBox x:Name="pwdTb" PlaceholderText="Password" />
             <Button Content="Log in" Width="400" Click="Button_Click"/>
         </StackPanel>
         <Button HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Don't have an account yet?!" Width="400" Click="Button_Click_1"/>

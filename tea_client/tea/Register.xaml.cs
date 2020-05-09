@@ -34,19 +34,30 @@ namespace tea
             try
             {
                 if (usernameTb.Text.Length == 0 || nameTb.Text.Length == 0
-                    || pwdTb.Text.Length == 0 || phoneTb.Text.Length == 0)
+                    || pwdTb.Password.Length == 0 || phoneTb.Text.Length == 0
+                    || pwdTb2.Password.Length == 0)
                 {
                     infoTb.Text = "The provided credentials are incomplete.";
-                    pwdTb.Text = "";
+                    pwdTb.Password = "";
+                    pwdTb2.Password = "";
+                    return;
+                }
+
+                if (pwdTb.Password.CompareTo(pwdTb2.Password) != 0)
+                {
+                    infoTb.Text = "The provided passwords do not match.";
+                    pwdTb.Password = "";
+                    pwdTb2.Password = "";
                     return;
                 }
 
                 string username = Query.Register(new RegisterDtoOut(usernameTb.Text,
-                    pwdTb.Text, nameTb.Text, phoneTb.Text));
+                    pwdTb.Password, nameTb.Text, phoneTb.Text));
                 if (username.Equals("-1"))
                 {
-                    infoTb.Text = "Invalid value found. Please double check your credentials.";
-                    pwdTb.Text = "";
+                    infoTb.Text = "Wrong credentials.";
+                    pwdTb.Password = "";
+                    pwdTb2.Password = "";
                     return;
                 }
                 this.Frame.Navigate(typeof(Login));
@@ -55,7 +66,8 @@ namespace tea
             {
                 Console.WriteLine(ex.Message);
                 infoTb.Text = "Could not connect to the server. Please try again later.";
-                pwdTb.Text = "";
+                pwdTb.Password = "";
+                pwdTb2.Password = "";
             }
         }
 

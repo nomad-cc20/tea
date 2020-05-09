@@ -48,7 +48,10 @@ namespace tea
 
             try
             {
-                Query.GetAllActiveOffers().ForEach((OfferDtoIn o) => { dataList.Add(o); });
+                Query.GetAllActiveOffers().ForEach((OfferDtoIn o) => {
+                    if (!o.Username.Equals(username))
+                        dataList.Add(o);
+                });
             }
             catch (Exception ex)
             {

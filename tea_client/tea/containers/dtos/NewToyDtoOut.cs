@@ -10,11 +10,6 @@ namespace tea.containers.dtos
     {
         public string name { get; set; }
         public string username { get; set; }
-
-        public NewToyDtoOut(string name, string username)
-        {
-            this.name = name;
-            this.username = username;
-        }
+        public string imageData { get; set; }
     }
 }

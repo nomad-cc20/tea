@@ -34,17 +34,17 @@ namespace tea
         {
             try
             {
-                if (nameTb.Text.Length == 0 || pwdTb.Text.Length == 0)
+                if (nameTb.Text.Length == 0 || pwdTb.Password.Length == 0)
                 {
                     infoTb.Text = "The provided credentials are incomplete.";
-                    pwdTb.Text = "";
+                    pwdTb.Password = "";
                     return;
                 }
-                string username = Query.LogIn(new UserDtoOut(nameTb.Text, pwdTb.Text));
+                string username = Query.LogIn(new UserDtoOut(nameTb.Text, pwdTb.Password));
                 if (username.Equals("-1"))
                 {
                     infoTb.Text = "The provided credentials are wrong.";
-                    pwdTb.Text = "";
+                    pwdTb.Password = "";
                     return;
                 }
                 this.Frame.Navigate(typeof(Main), username);
@@ -53,7 +53,7 @@ namespace tea
             {
                 Console.WriteLine(ex.Message);
                 infoTb.Text = "Could not connect to the server. Please try again later.";
-                pwdTb.Text = "";
+                pwdTb.Password = "";
             }
         }
 

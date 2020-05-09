@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -37,28 +38,45 @@ namespace tea
             base.OnNavigatedTo(e);
 
             username = (string)e.Parameter;
+
+            ObservableCollection<ToyDtoIn> availableToysList = new ObservableCollection<ToyDtoIn>();
+
+            try
+            {
+                availableToysList = new ObservableCollection<ToyDtoIn>(Query.GetMyToys(new UserNameDtoOut { username = this.username }));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            toysList.ItemsSource = availableToysList;
         }
 
         private void submitBtn_Click(object sender, RoutedEventArgs e)
         {
             if (captionTb.Text.Length <= 0)
             {
-                captionTb.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+                captionTb.PlaceholderForeground = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
                 return;
             }
 
             if (descriptionTb.Text.Length <= 0)
             {
-                descriptionTb.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+                descriptionTb.PlaceholderForeground = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
                 return;
             }
+
+            List<long> toys = new List<long>();
+            List<ToyDtoIn> toyDtos = toysList.SelectedItems.OfType<ToyDtoIn>().ToList();
+            toyDtos.ForEach((ToyDtoIn toy) => { toys.Add(toy.Id); });
 
             try
             {
                 Query.NewOffer(new NewOfferDtoOut {
                     caption = captionTb.Text,
                     description = descriptionTb.Text,
-                    toys = new List<Toy>(),
+                    toys = toys,
                     username = this.username
                 });
                 this.Frame.Navigate(typeof(Blank));
@@ -68,5 +86,6 @@ namespace tea
                 Console.WriteLine(ex.Message);
             }
         }
+
     }
 }

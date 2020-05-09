@@ -11,7 +11,7 @@ namespace tea.containers.dtos
         public long offerId { get; set; }
         public string caption { get; set; }
         public string description { get; set; }
-        public List<Toy> toys { get; set; }
+        public List<long> toys { get; set; }
         public string username { get; set; }
     }
 }

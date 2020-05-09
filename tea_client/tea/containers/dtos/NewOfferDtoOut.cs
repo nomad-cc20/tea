@@ -10,7 +10,7 @@ namespace tea.containers.dtos
     {
         public String caption { get; set; }
         public String description { get; set; }
-        public List<Toy> toys { get; set; }
+        public List<long> toys { get; set; }
         public String username { get; set; }
     }
 }

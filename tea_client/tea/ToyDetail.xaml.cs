@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using tea.containers.dtos;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -36,7 +37,7 @@ namespace tea
             toy = (Toy)e.Parameter;
 
             nameTb.Text = toy.Name;
-            // TODO image
+            Img.Source = toy.ImageSource;
         }
     }
 }

@@ -13,8 +13,11 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="64"></RowDefinition>
         </Grid.RowDefinitions>
-        <Image Grid.Row="0"
-               Source="Assets/logoTEAfinal.png" />
+        <Button Name="ImgBtn" Click="ImgBtn_Click">
+            <Image Name ="Img" Grid.Row="0"
+               Source="Assets/StoreLogo.png"
+               />
+        </Button>
         <StackPanel Grid.Row="1"
                     HorizontalAlignment="Stretch">
             <TextBox x:Name="nameTb"

@@ -58,7 +58,6 @@ namespace tea.utils
 
             using (var response = request.GetResponse())
             {
-                //return Newtonsoft.Json.JsonConvert.DeserializeObject<String>((new StreamReader(response.GetResponseStream())).ReadToEnd());
                 return (new StreamReader(response.GetResponseStream())).ReadToEnd();
             }
         }
@@ -117,6 +116,17 @@ namespace tea.utils
             request.GetResponse();
         }
 
+        internal static OfferDtoIn GetOffer(long offerId)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("getOffer/" + offerId));
+            request.Timeout = 5000;
+
+            using (var response = request.GetResponse())
+            {
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<OfferDtoIn>((new StreamReader(response.GetResponseStream())).ReadToEnd());
+            }
+        }
+
         public static List<OfferDtoIn> GetAllActiveOffers()
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("getAllActiveOffers"));
@@ -165,7 +175,7 @@ namespace tea.utils
             request.GetResponse();
         }
 
-        public static List<OfferDtoIn> GetMyBids(UserNameDtoOut dto)
+        public static List<BidDtoIn> GetMyBids(UserNameDtoOut dto)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("getAllBidsOfUser"));
             request.Method = "POST";
@@ -181,7 +191,7 @@ namespace tea.utils
 
             using (var response = request.GetResponse())
             {
-                return Newtonsoft.Json.JsonConvert.DeserializeObject<List<OfferDtoIn>>((new StreamReader(response.GetResponseStream())).ReadToEnd());
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<List<BidDtoIn>>((new StreamReader(response.GetResponseStream())).ReadToEnd());
             }
         }
 
@@ -196,13 +206,16 @@ namespace tea.utils
             }
         }
 
-        public static void AcceptBid(long id)
+        public static string AcceptBid(long id)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("acceptBid/" + id));
             request.Method = "POST";
             request.Timeout = 5000;
 
-            request.GetResponse();
+            using (var response = request.GetResponse())
+            {
+                return (new StreamReader(response.GetResponseStream())).ReadToEnd();
+            }
         }
     }
 }

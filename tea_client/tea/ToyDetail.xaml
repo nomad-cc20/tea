@@ -14,7 +14,7 @@
             <RowDefinition Height="32"></RowDefinition>
         </Grid.RowDefinitions>
         <Image Grid.Row="0"
-               Source="Assets/logoTEAfinal.png" />
+               x:Name="Img" />
         <StackPanel Grid.Row="1"
                     HorizontalAlignment="Stretch">
             <TextBlock x:Name="nameTb" Text="asdsad" Height="32"/>

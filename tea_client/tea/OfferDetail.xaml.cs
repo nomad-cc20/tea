@@ -50,7 +50,8 @@ namespace tea
 
         private void toysList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            Toy toy = ((Toy)toysList.SelectedItem);
+            this.Frame.Navigate(typeof(ToyDetail), toy);
         }
 
         private void btnGet_Click(object sender, RoutedEventArgs e)

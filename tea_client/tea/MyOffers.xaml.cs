@@ -8,6 +8,7 @@ using tea.containers.dtos;
 using tea.utils;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -56,6 +57,14 @@ namespace tea
         {
             OfferDtoIn dto = ((OfferDtoIn)offersList.SelectedItem);
             this.Frame.Navigate(typeof(Bids), new object[] { username, dto });
+        }
+
+        private void offersList_ContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
+        {
+            if (((OfferDtoIn)args.Item).Active == false)
+            {
+                args.ItemContainer.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0));
+            }
         }
     }
 }

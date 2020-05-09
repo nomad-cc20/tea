@@ -12,7 +12,8 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock x:Name="infoTb" TextWrapping="WrapWholeWords" HorizontalAlignment="Center" />
             <TextBox x:Name="usernameTb" PlaceholderText="Username" />
-            <TextBox x:Name="pwdTb" PlaceholderText="Password" />
+            <PasswordBox x:Name="pwdTb" PlaceholderText="Password" />
+            <PasswordBox x:Name="pwdTb2" PlaceholderText="Password" />
             <TextBox x:Name="nameTb" PlaceholderText="Display name" />
             <TextBox x:Name="phoneTb" PlaceholderText="Phone number" />
             <Button Content="Register" Width="400" Click="Button_Click"/>

@@ -8,6 +8,7 @@ using tea.containers.dtos;
 using tea.utils;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -40,11 +41,11 @@ namespace tea
 
             // TODO datalist of all user's offers from API
 
-            ObservableCollection<OfferDtoIn> dataList = new ObservableCollection<OfferDtoIn>();
+            ObservableCollection<BidDtoIn> dataList = new ObservableCollection<BidDtoIn>();
 
             try
             {
-                Query.GetMyBids(new UserNameDtoOut { username = this.username }).ForEach((OfferDtoIn o) => { dataList.Add(o); });
+                Query.GetMyBids(new UserNameDtoOut { username = this.username }).ForEach((BidDtoIn o) => { dataList.Add(o); });
             }
             catch (Exception ex)
             {
@@ -56,7 +57,17 @@ namespace tea
 
         private void offersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            BidDtoIn bid = (BidDtoIn)offersList.SelectedItem;
+            OfferDtoIn offer = Query.GetOffer(bid.OfferId);
+            this.Frame.Navigate(typeof(MyBidDetail), new Object[] { offer, bid });
+        }
 
+        private void offersList_ContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
+        {
+            if (((BidDtoIn)args.Item).Active == false)
+            {
+                args.ItemContainer.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0));
+            }
         }
     }
 }
