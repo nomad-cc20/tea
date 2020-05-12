@@ -22,7 +22,7 @@ namespace tea.utils
         public static string Register(RegisterDtoOut dto)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("register"));
-            request.Timeout = 5000;
+            request.Timeout = 10000;
             request.Method = "POST";
             request.ContentType = "application/json; charset=utf-8";
 
@@ -45,7 +45,7 @@ namespace tea.utils
                 return "admin";
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("login"));
-            request.Timeout = 5000;
+            request.Timeout = 10000;
             request.Method = "POST";
             request.ContentType = "application/json; charset=utf-8";
 
@@ -65,7 +65,7 @@ namespace tea.utils
         public static void NewToy(NewToyDtoOut dto)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("createToy"));
-            request.Timeout = 5000;
+            request.Timeout = 10000;
             request.Method = "POST";
             request.ContentType = "application/json; charset=utf-8";
 
@@ -82,7 +82,7 @@ namespace tea.utils
         public static List<ToyDtoIn> GetMyToys(UserNameDtoOut dto)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("getAllToys"));
-            request.Timeout = 5000;
+            request.Timeout = 10000;
             request.Method = "POST";
             request.ContentType = "application/json; charset=utf-8";
 
@@ -102,7 +102,7 @@ namespace tea.utils
         public static void NewOffer(NewOfferDtoOut dto)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("createOffer"));
-            request.Timeout = 5000;
+            request.Timeout = 10000;
             request.Method = "POST";
             request.ContentType = "application/json; charset=utf-8";
 
@@ -119,7 +119,7 @@ namespace tea.utils
         internal static OfferDtoIn GetOffer(long offerId)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("getOffer/" + offerId));
-            request.Timeout = 5000;
+            request.Timeout = 10000;
 
             using (var response = request.GetResponse())
             {
@@ -130,7 +130,7 @@ namespace tea.utils
         public static List<OfferDtoIn> GetAllActiveOffers()
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("getAllActiveOffers"));
-            request.Timeout = 5000;
+            request.Timeout = 10000;
 
             using (var response = request.GetResponse())
             {
@@ -143,7 +143,7 @@ namespace tea.utils
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("getAllOffersOfUser"));
             request.Method = "POST";
             request.ContentType = "application/json; charset=utf-8";
-            request.Timeout = 5000;
+            request.Timeout = 10000;
 
             using (var streamWriter = new StreamWriter(request.GetRequestStream()))
             {
@@ -161,7 +161,7 @@ namespace tea.utils
         public static void NewBid(NewBidDtoOut dto)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("createBid"));
-            request.Timeout = 5000;
+            request.Timeout = 10000;
             request.Method = "POST";
             request.ContentType = "application/json; charset=utf-8";
 
@@ -180,7 +180,7 @@ namespace tea.utils
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("getAllBidsOfUser"));
             request.Method = "POST";
             request.ContentType = "application/json; charset=utf-8";
-            request.Timeout = 5000;
+            request.Timeout = 10000;
 
             using (var streamWriter = new StreamWriter(request.GetRequestStream()))
             {
@@ -198,7 +198,7 @@ namespace tea.utils
         public static List<BidDtoIn> GetBids(long id)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("getAllBids/" + id));
-            request.Timeout = 5000;
+            request.Timeout = 10000;
 
             using (var response = request.GetResponse())
             {
@@ -211,7 +211,7 @@ namespace tea.utils
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("acceptBid/" + id));
             request.Method = "POST";
             request.ContentType = "application/json; charset=utf-8";
-            request.Timeout = 5000;
+            request.Timeout = 10000;
 
             using (var response = request.GetResponse())
             {

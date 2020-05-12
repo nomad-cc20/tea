@@ -27,9 +27,9 @@ namespace tea
             this.InitializeComponent();
         }
 
-        private void btnLogOut_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(Login));
-        }
+        //private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this.Frame.Navigate(typeof(Login));
+        //}
     }
 }

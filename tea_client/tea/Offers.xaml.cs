@@ -51,8 +51,15 @@ namespace tea
                 Query.GetAllActiveOffers().ForEach(async (OfferDtoIn o) => {
                     if (!o.Username.Equals(username))
                     {
-                        await o.BuildImage();
-                        dataList.Add(o);
+                        try
+                        {
+                            await o.BuildImage();
+                            dataList.Add(o);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                     }
                 });
             }

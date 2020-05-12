@@ -9,10 +9,10 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Button Name ="btnLogOut"
+        <!--<Button Name ="btnLogOut"
                 Content="Log out"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Click="btnLogOut_Click" />
+                Click="btnLogOut_Click" />-->
     </Grid>
 </Page>

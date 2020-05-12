@@ -4,11 +4,19 @@
     <UseSimulator>true</UseSimulator>
   </PropertyGroup>
   <PropertyGroup>
-    <SplashScreenSource>S:\skola\N\INOSY2\tea\tea_client\tea\Assets\logoTEAfinal.png</SplashScreenSource>
+    <SplashScreenSource>C:\Users\ZNO\Desktop\inosys\tea\tea_client\tea\Assets\logoTEAfinal.png</SplashScreenSource>
     <UapAppxPackageBuildMode>SideloadOnly</UapAppxPackageBuildMode>
     <AppxShowAllApps>False</AppxShowAllApps>
     <AppxBuildConfigurationSelection>x86|x64</AppxBuildConfigurationSelection>
     <PackageOptionalProjectsInIdeBuilds>False</PackageOptionalProjectsInIdeBuilds>
+    <PackageLogoSource>C:\Users\ZNO\Desktop\inosys\tea\tea_client\tea\Assets\logoTEAfinal.png</PackageLogoSource>
+    <BadgeLogoSource>C:\Users\ZNO\Desktop\inosys\tea\tea_client\tea\Assets\logoTEAfinal.png</BadgeLogoSource>
+    <AppIconSource>C:\Users\ZNO\Desktop\inosys\tea\tea_client\tea\Assets\logoTEAfinal.png</AppIconSource>
+    <Source>C:\Users\ZNO\Desktop\inosys\tea\tea_client\tea\Assets\logoTEAfinal.png</Source>
+    <SmallTileSource>C:\Users\ZNO\Desktop\inosys\tea\tea_client\tea\Assets\logoTEAfinal.png</SmallTileSource>
+    <MediumTileSource>C:\Users\ZNO\Desktop\inosys\tea\tea_client\tea\Assets\logoTEAfinal.png</MediumTileSource>
+    <WideTileSource>C:\Users\ZNO\Desktop\inosys\tea\tea_client\tea\Assets\logoTEAfinal.png</WideTileSource>
+    <LargeTileSource>C:\Users\ZNO\Desktop\inosys\tea\tea_client\tea\Assets\logoTEAfinal.png</LargeTileSource>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DeviceId>30f105c9-681e-420b-a277-7c086ead8a4e</DeviceId>
