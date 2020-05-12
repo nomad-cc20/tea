@@ -68,6 +68,8 @@ namespace tea
         {
             StorageFile sf = await Photo.CaptureAsync();
 
+            if (sf == null)
+                return;
             // Use the image.
             //SoftwareBitmap softwareBitmapBGR8 = SoftwareBitmap.Convert(softwareBitmap,
             //    BitmapPixelFormat.Bgra8,
