@@ -19,7 +19,7 @@
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Image Grid.Row="0"
-                               Source="Assets/logoTEAfinal.png" />
+                               Source="{Binding Image}" />
                         <StackPanel Grid.Row="1"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Center">

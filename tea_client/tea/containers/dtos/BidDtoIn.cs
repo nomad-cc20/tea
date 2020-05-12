@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using tea.util;
+using Windows.UI.Xaml.Media;
 
 namespace tea.containers.dtos
 {
@@ -15,5 +17,13 @@ namespace tea.containers.dtos
         public string Description { get; set; }
         public bool Active { get; set; }
         public List<Toy> Toys { get; set; }
+        public ImageSource Image { get; set; }
+
+        public async Task BuildImage()
+        {
+            if (Toys != null)
+                if (Toys.Count > 0)
+                    Image = await Photo.FromBase64(Toys[0].ImageData);
+        }
     }
 }

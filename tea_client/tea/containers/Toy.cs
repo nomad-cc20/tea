@@ -18,6 +18,7 @@ namespace tea
         public long ID { get; set; }
         public String Name { get; set; }
         public string ImageData { get; set; }
+        public ImageSource Image { get; set; }
 
         public Toy()
         {
@@ -35,6 +36,11 @@ namespace tea
             this.ID = dto.Id;
             this.Name = dto.Name;
             this.ImageData = dto.ImageData;
+        }
+
+        public async Task BuildImage()
+        {
+            this.Image = await Photo.FromBase64(this.ImageData);
         }
 
         public override bool Equals(object obj)

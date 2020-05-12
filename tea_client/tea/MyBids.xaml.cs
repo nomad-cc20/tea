@@ -45,7 +45,10 @@ namespace tea
 
             try
             {
-                Query.GetMyBids(new UserNameDtoOut { username = this.username }).ForEach((BidDtoIn o) => { dataList.Add(o); });
+                Query.GetMyBids(new UserNameDtoOut { username = this.username }).ForEach(async (BidDtoIn o) => {
+                    await o.BuildImage();
+                    dataList.Add(o);
+                });
             }
             catch (Exception ex)
             {

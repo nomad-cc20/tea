@@ -70,13 +70,6 @@ namespace tea
 
             if (sf == null)
                 return;
-            // Use the image.
-            //SoftwareBitmap softwareBitmapBGR8 = SoftwareBitmap.Convert(softwareBitmap,
-            //    BitmapPixelFormat.Bgra8,
-            //    BitmapAlphaMode.Premultiplied);
-
-            //SoftwareBitmapSource bitmapSource = new SoftwareBitmapSource();
-            //await bitmapSource.SetBitmapAsync(softwareBitmapBGR8);
 
             Img.Source = await Photo.FromBase64(await Photo.ToBase64(sf));
         }

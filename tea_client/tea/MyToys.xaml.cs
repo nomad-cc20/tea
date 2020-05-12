@@ -42,7 +42,11 @@ namespace tea
 
             try
             {
-                Query.GetMyToys(new UserNameDtoOut { username = this.username }).ForEach((ToyDtoIn o) => { dataList.Add(new Toy(o)); });
+                Query.GetMyToys(new UserNameDtoOut { username = this.username }).ForEach(async (ToyDtoIn o) => {
+                    Toy toy = new Toy(o);
+                    await toy.BuildImage();
+                    dataList.Add(toy);
+                });
             }
             catch (Exception ex)
             {

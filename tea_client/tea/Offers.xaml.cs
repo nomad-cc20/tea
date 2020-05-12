@@ -38,7 +38,7 @@ namespace tea
             this.Frame.Navigate(typeof(OfferDetail), new object[] { username, dto });
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
@@ -48,9 +48,12 @@ namespace tea
 
             try
             {
-                Query.GetAllActiveOffers().ForEach((OfferDtoIn o) => {
+                Query.GetAllActiveOffers().ForEach(async (OfferDtoIn o) => {
                     if (!o.Username.Equals(username))
+                    {
+                        await o.BuildImage();
                         dataList.Add(o);
+                    }
                 });
             }
             catch (Exception ex)

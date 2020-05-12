@@ -41,11 +41,16 @@ namespace tea
             username = (string)(((object[])(e.Parameter))[0]);
             offer = (OfferDtoIn)(((object[])(e.Parameter))[1]);
 
-            ObservableCollection<ToyDtoIn> availableToysList = new ObservableCollection<ToyDtoIn>();
+            ObservableCollection<Toy> availableToysList = new ObservableCollection<Toy>();
 
             try
             {
-                availableToysList = new ObservableCollection<ToyDtoIn>(Query.GetMyToys(new UserNameDtoOut { username = this.username }));
+                Query.GetMyToys(new UserNameDtoOut { username = this.username }).ForEach(async (ToyDtoIn dto) =>
+                {
+                    Toy toy = new Toy(dto);
+                    await toy.BuildImage();
+                    availableToysList.Add(toy);
+                });
             }
             catch (Exception ex)
             {

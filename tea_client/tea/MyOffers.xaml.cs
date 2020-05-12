@@ -43,7 +43,10 @@ namespace tea
 
             try
             {
-                Query.GetMyOffers(new UserNameDtoOut { username = this.username }).ForEach((OfferDtoIn o) => { dataList.Add(o); });
+                Query.GetMyOffers(new UserNameDtoOut { username = this.username }).ForEach(async (OfferDtoIn o) => {
+                    await o.BuildImage();
+                    dataList.Add(o);
+                });
             }
             catch (Exception ex)
             {

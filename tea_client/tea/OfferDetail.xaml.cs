@@ -40,7 +40,14 @@ namespace tea
             username = (string)(((object[])(e.Parameter))[0]);
             offer = (OfferDtoIn)(((object[])(e.Parameter))[1]);
 
-            ObservableCollection<Toy> dataList = new ObservableCollection<Toy>(offer.Toys);
+            await offer.BuildImage();
+            Image.Source = offer.Image;
+
+            ObservableCollection<Toy> dataList = new ObservableCollection<Toy>();
+            offer.Toys.ForEach(async (Toy toy) => {
+                await toy.BuildImage();
+                dataList.Add(toy);
+            });
 
             CaptionTb.Text = offer.Caption;
             DescriptionTb.Text = offer.Description;

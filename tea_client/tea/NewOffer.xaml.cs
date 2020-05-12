@@ -39,11 +39,16 @@ namespace tea
 
             username = (string)e.Parameter;
 
-            ObservableCollection<ToyDtoIn> availableToysList = new ObservableCollection<ToyDtoIn>();
+            ObservableCollection<Toy> availableToysList = new ObservableCollection<Toy>();
 
             try
             {
-                availableToysList = new ObservableCollection<ToyDtoIn>(Query.GetMyToys(new UserNameDtoOut { username = this.username }));
+                Query.GetMyToys(new UserNameDtoOut { username = this.username }).ForEach(async (ToyDtoIn dto) =>
+                {
+                    Toy toy = new Toy(dto);
+                    await toy.BuildImage();
+                    availableToysList.Add(toy);
+                });
             }
             catch (Exception ex)
             {
@@ -67,16 +72,16 @@ namespace tea
                 return;
             }
 
-            List<long> toys = new List<long>();
-            List<ToyDtoIn> toyDtos = toysList.SelectedItems.OfType<ToyDtoIn>().ToList();
-            toyDtos.ForEach((ToyDtoIn toy) => { toys.Add(toy.Id); });
+            List<long> toyIds = new List<long>();
+            List<Toy> toys = toysList.SelectedItems.OfType<Toy>().ToList();
+            toys.ForEach((Toy toy) => { toyIds.Add(toy.ID); });
 
             try
             {
                 Query.NewOffer(new NewOfferDtoOut {
                     caption = captionTb.Text,
                     description = descriptionTb.Text,
-                    toys = toys,
+                    toys = toyIds,
                     username = this.username
                 });
                 this.Frame.Navigate(typeof(Blank));

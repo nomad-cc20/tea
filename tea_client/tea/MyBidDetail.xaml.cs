@@ -32,7 +32,7 @@ namespace tea
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
@@ -40,16 +40,28 @@ namespace tea
             offer = (OfferDtoIn)(((object[])(e.Parameter))[0]);
             bid = (BidDtoIn)(((object[])(e.Parameter))[1]);
 
+            await offer.BuildImage();
+            OfferImg.Source = offer.Image;
+
             ObservableCollection<Toy> dataListOffer = new ObservableCollection<Toy>();
-            offer.Toys.ForEach((Toy toy) => dataListOffer.Add(toy));
+            offer.Toys.ForEach(async (Toy toy) => {
+                await toy.BuildImage();
+                dataListOffer.Add(toy);
+            });
 
             OfferCaptionTb.Text = offer.Caption;
             OfferDescriptionTb.Text = offer.Description;
             OfferUserTb.Text = offer.NameOfPerson;
             OfferToysList.ItemsSource = dataListOffer;
 
+            await bid.BuildImage();
+            BidImg.Source = bid.Image;
+
             ObservableCollection<Toy> dataListBid = new ObservableCollection<Toy>();
-            bid.Toys.ForEach((Toy toy) => dataListBid.Add(toy));
+            bid.Toys.ForEach(async (Toy toy) => {
+                await toy.BuildImage();
+                dataListBid.Add(toy);
+            });
 
             BidCaptionTb.Text = bid.Caption;
             BidDescriptionTb.Text = bid.Description;

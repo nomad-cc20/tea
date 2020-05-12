@@ -20,7 +20,7 @@
                             <ColumnDefinition Width="0.3*"></ColumnDefinition>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="Assets/logoTEAfinal.png"/>
+                        <Image Grid.Column="0" Source="{Binding Image}" />
                         <TextBlock Text="{Binding Name}" Grid.Column="1"></TextBlock>
                     </Grid>
                 </DataTemplate>

@@ -18,7 +18,7 @@
                 <ColumnDefinition Width="0.3*"></ColumnDefinition>
                 <ColumnDefinition Width="0.7*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Source="Assets/logoTEAfinal.png"/>
+            <Image Grid.Column="0" x:Name="Img"/>
             <StackPanel Grid.Column="1">
                 <TextBlock x:Name="captionTb"></TextBlock>
                 <TextBlock x:Name="descriptionTb"
@@ -37,7 +37,7 @@
                             <ColumnDefinition Width="0.3*"></ColumnDefinition>
                             <ColumnDefinition Width="0.7*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="Assets/logoTEAfinal.png"/>
+                        <Image Grid.Column="0" Source="{Binding Image}"/>
                         <StackPanel Grid.Column="1">
                             <TextBlock Text="{Binding Caption}"></TextBlock>
                             <TextBlock Text="{Binding Description}"

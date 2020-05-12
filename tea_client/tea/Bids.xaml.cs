@@ -33,18 +33,24 @@ namespace tea
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
             username = (string)(((object[])(e.Parameter))[0]);
             offer = (OfferDtoIn)(((object[])(e.Parameter))[1]);
 
+            await offer.BuildImage();
+            Img.Source = offer.Image;
+
             ObservableCollection<BidDtoIn> dataList = new ObservableCollection<BidDtoIn>();
 
             try
             {
-                Query.GetBids(offer.OfferId).ForEach((BidDtoIn o) => { dataList.Add(o); });
+                Query.GetBids(offer.OfferId).ForEach(async (BidDtoIn o) => {
+                    await o.BuildImage();
+                    dataList.Add(o);
+                });
             }
             catch (Exception ex)
             {
