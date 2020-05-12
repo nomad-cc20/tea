@@ -18,7 +18,6 @@ namespace tea
         public long ID { get; set; }
         public String Name { get; set; }
         public string ImageData { get; set; }
-        public ImageSource ImageSource { get; set; }
 
         public Toy()
         {
@@ -29,7 +28,6 @@ namespace tea
             this.ID = id;
             this.Name = name;
             this.ImageData = image;
-            this.ImageSource = Photo.FromBase64(image).Result;
         }
 
         public Toy(ToyDtoIn dto)

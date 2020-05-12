@@ -33,6 +33,7 @@ namespace tea
     {
         private string username = "";
 
+
         public NewToy()
         {
             this.InitializeComponent();
@@ -45,37 +46,37 @@ namespace tea
             username = (string)e.Parameter;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             if (nameTb.Text.Length > 0)
             {
                 try
                 {
-                    Query.NewToy(new NewToyDtoOut { name = nameTb.Text, username = username, imageData = Photo.ToBase64(null, new Guid("15926159-3412-1461-4651-172852621358")).Result});
-                    this.Frame.Navigate(typeof(Blank));
+                    Query.NewToy(new NewToyDtoOut { name = nameTb.Text, username = username, imageData = await Photo.ToBase64(Img) });
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
+                this.Frame.Navigate(typeof(Blank));
             }
             else
                 nameTb.PlaceholderForeground = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
         }
 
-        private void ImgBtn_Click(object sender, RoutedEventArgs e)
+        private async void ImgBtn_Click(object sender, RoutedEventArgs e)
         {
-            SoftwareBitmap softwareBitmap = Photo.CaptureAsync().Result;
-            
+            StorageFile sf = await Photo.CaptureAsync();
+
             // Use the image.
-            SoftwareBitmap softwareBitmapBGR8 = SoftwareBitmap.Convert(softwareBitmap,
-                BitmapPixelFormat.Bgra8,
-                BitmapAlphaMode.Premultiplied);
+            //SoftwareBitmap softwareBitmapBGR8 = SoftwareBitmap.Convert(softwareBitmap,
+            //    BitmapPixelFormat.Bgra8,
+            //    BitmapAlphaMode.Premultiplied);
 
-            SoftwareBitmapSource bitmapSource = new SoftwareBitmapSource();
-            bitmapSource.SetBitmapAsync(softwareBitmapBGR8);
+            //SoftwareBitmapSource bitmapSource = new SoftwareBitmapSource();
+            //await bitmapSource.SetBitmapAsync(softwareBitmapBGR8);
 
-            Img.Source = bitmapSource;
+            Img.Source = await Photo.FromBase64(await Photo.ToBase64(sf));
         }
     }
 }

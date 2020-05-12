@@ -12,12 +12,13 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Media;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.IO;
+using Windows.UI.Xaml.Controls;
 
 namespace tea.util
 {
     class Photo
     {
-        public static async Task<SoftwareBitmap> CaptureAsync()
+        public static async Task<StorageFile> CaptureAsync()
         {
             // Shoot photo.
             CameraCaptureUI captureUI = new CameraCaptureUI();
@@ -32,6 +33,8 @@ namespace tea.util
                 return null;
             }
 
+            return photo;
+
             //// Move photo to a folder.
             //StorageFolder destinationFolder =
             //await ApplicationData.Current.LocalFolder.CreateFolderAsync("ProfilePhotoFolder",
@@ -41,9 +44,9 @@ namespace tea.util
             //await photo.DeleteAsync();
 
             // Convert to SoftwareBitmap for later use.
-            IRandomAccessStream stream = await photo.OpenAsync(FileAccessMode.Read);
-            BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
-            SoftwareBitmap softwareBitmap = await decoder.GetSoftwareBitmapAsync();
+            //IRandomAccessStream stream = await photo.OpenAsync(FileAccessMode.Read);
+            //BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
+            //SoftwareBitmap softwareBitmap = await decoder.GetSoftwareBitmapAsync();
 
             //// Use the image.
             //SoftwareBitmap softwareBitmapBGR8 = SoftwareBitmap.Convert(softwareBitmap,
@@ -53,10 +56,71 @@ namespace tea.util
             //SoftwareBitmapSource bitmapSource = new SoftwareBitmapSource();
             //await bitmapSource.SetBitmapAsync(softwareBitmapBGR8);
 
-            return softwareBitmap;
+            //return softwareBitmap;
 
             // <Image x:Name="imageControl" Width="200" Height="200"/>
             // imageControl.Source = bitmapSource;
+        }
+
+        //public static async Task<ImageSource> FromBase64(string base64)
+        //{
+        //    byte[] bytes = Convert.FromBase64String(base64);
+            
+        //    BitmapImage image = new BitmapImage();
+        //    using (InMemoryRandomAccessStream stream = new InMemoryRandomAccessStream())
+        //    {
+        //        await stream.WriteAsync(bytes.AsBuffer());
+        //        stream.Seek(0);
+        //        await image.SetSourceAsync(stream);
+        //    }
+        //    return image;
+        //}
+
+        // using System.Runtime.InteropServices.WindowsRuntime;
+
+        public static async Task<string> ToBase64(Image control)
+        {
+            var bitmap = new RenderTargetBitmap();
+            await bitmap.RenderAsync(control);
+            return await ToBase64(bitmap);
+        }
+
+        public static async Task<string> ToBase64(WriteableBitmap bitmap)
+        {
+            var bytes = bitmap.PixelBuffer.ToArray();
+            return await ToBase64(bytes, (uint)bitmap.PixelWidth, (uint)bitmap.PixelHeight);
+        }
+
+        public static async Task<string> ToBase64(StorageFile bitmap)
+        {
+            var stream = await bitmap.OpenAsync(Windows.Storage.FileAccessMode.Read);
+            var decoder = await BitmapDecoder.CreateAsync(stream);
+            var pixels = await decoder.GetPixelDataAsync();
+            var bytes = pixels.DetachPixelData();
+            return await ToBase64(bytes, (uint)decoder.PixelWidth, (uint)decoder.PixelHeight, decoder.DpiX, decoder.DpiY);
+        }
+
+        public static async Task<string> ToBase64(RenderTargetBitmap bitmap)
+        {
+            var bytes = (await bitmap.GetPixelsAsync()).ToArray();
+            return await ToBase64(bytes, (uint)bitmap.PixelWidth, (uint)bitmap.PixelHeight);
+        }
+
+        public static async Task<string> ToBase64(byte[] image, uint height, uint width, double dpiX = 96, double dpiY = 96)
+        {
+            // encode image
+            var encoded = new InMemoryRandomAccessStream();
+            var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, encoded);
+            encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Straight, height, width, dpiX, dpiY, image);
+            await encoder.FlushAsync();
+            encoded.Seek(0);
+
+            // read bytes
+            var bytes = new byte[encoded.Size];
+            await encoded.AsStream().ReadAsync(bytes, 0, bytes.Length);
+
+            // create base64
+            return Convert.ToBase64String(bytes);
         }
 
         public static async Task<ImageSource> FromBase64(string base64)
@@ -73,35 +137,6 @@ namespace tea.util
             var output = new WriteableBitmap((int)decoder.PixelHeight, (int)decoder.PixelWidth);
             await output.SetSourceAsync(image);
             return output;
-        }
-
-        public static async Task<string> ToBase64(SoftwareBitmap soft, Guid encoderId)
-        {
-            byte[] array = null;
-
-            // First: Use an encoder to copy from SoftwareBitmap to an in-mem stream (FlushAsync)
-            // Next:  Use ReadAsync on the in-mem stream to get byte[] array
-
-            using (var ms = new InMemoryRandomAccessStream())
-            {
-                BitmapEncoder encoder = await BitmapEncoder.CreateAsync(encoderId, ms);
-                encoder.SetSoftwareBitmap(soft);
-
-                try
-                {
-                    await encoder.FlushAsync();
-                }
-                catch (Exception ex)
-                {
-                    return "";
-                }
-
-                array = new byte[ms.Size];
-                await ms.ReadAsync(array.AsBuffer(), (uint)ms.Size, InputStreamOptions.None);
-            }
-
-            string base64String = Convert.ToBase64String(array);
-            return base64String;
         }
     }
 }

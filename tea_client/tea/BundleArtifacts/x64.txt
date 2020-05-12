@@ -1,2 +1,2 @@
-MainPackage=S:\skola\N\INOSY2\tea\tea_client\tea\bin\x64\Debug\tea_1.0.1.0_x64_Debug.msix
-SymbolPackage=S:\skola\N\INOSY2\tea\tea_client\tea\obj\x64\Debug\Symbols\tea_1.0.1.0_x64_Debug.appxsym
+MainPackage=S:\skola\N\INOSY2\tea\tea_client\tea\bin\x64\Debug\tea_1.0.3.0_x64_Debug.msix
+SymbolPackage=S:\skola\N\INOSY2\tea\tea_client\tea\obj\x64\Debug\Symbols\tea_1.0.3.0_x64_Debug.appxsym

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using tea.containers.dtos;
+using tea.util;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -30,14 +31,14 @@ namespace tea
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
             toy = (Toy)e.Parameter;
 
             nameTb.Text = toy.Name;
-            Img.Source = toy.ImageSource;
+            Img.Source = await Photo.FromBase64(toy.ImageData);
         }
     }
 }
