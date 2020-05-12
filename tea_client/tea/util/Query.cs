@@ -11,7 +11,7 @@ namespace tea.utils
 {
     static class Query
     {
-        private static readonly string PREFIX = "http://localhost:8080/toychange/";
+        private static readonly string PREFIX = "https://inosi.herokuapp.com/toychange/";
         private static readonly bool BYPASS_LOGIN = false;
 
         private static string GetPath(string postfix)
@@ -210,6 +210,7 @@ namespace tea.utils
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetPath("acceptBid/" + id));
             request.Method = "POST";
+            request.ContentType = "application/json; charset=utf-8";
             request.Timeout = 5000;
 
             using (var response = request.GetResponse())

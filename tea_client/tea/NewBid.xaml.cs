@@ -74,9 +74,9 @@ namespace tea
                 return;
             }
 
-            List<long> toys = new List<long>();
-            List<ToyDtoIn> toyDtos = toysList.SelectedItems.OfType<ToyDtoIn>().ToList();
-            toyDtos.ForEach((ToyDtoIn toy) => { toys.Add(toy.Id); });
+            List<long> toyIds = new List<long>();
+            List<Toy> toys = toysList.SelectedItems.OfType<Toy>().ToList();
+            toys.ForEach((Toy toy) => { toyIds.Add(toy.ID); });
 
             try
             {
@@ -85,7 +85,7 @@ namespace tea
                     caption = captionTb.Text,
                     description = descriptionTb.Text,
                     offerId = offer.OfferId,
-                    toys = toys,
+                    toys = toyIds,
                     username = username
                 });
                 this.Frame.Navigate(typeof(Blank));
